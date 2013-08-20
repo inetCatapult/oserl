@@ -421,9 +421,9 @@ handle_event({input, CmdId, Pdu, _Lapse, _Timestamp}, Stn, Std)
   when ?IS_RESPONSE(CmdId) ->
     smpp_session:cancel_timer(Std#st.enquire_link_resp_timer),  % In case it was set
     SeqNum = smpp_operation:get_value(sequence_number, Pdu),
-    ReqId = ?REQUEST(CmdId),
+    %ReqId = ?REQUEST(CmdId),
     case smpp_req_tab:read(Std#st.req_tab, SeqNum) of
-        {ok, {SeqNum, ReqId, RTimer, Ref}} ->
+        {ok, {SeqNum, _ReqId, RTimer, Ref}} ->
             smpp_session:cancel_timer(RTimer),
             case smpp_operation:get_value(command_status, Pdu) of
                 ?ESME_ROK when CmdId == ?COMMAND_ID_BIND_RECEIVER_RESP ->
