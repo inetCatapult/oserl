@@ -18,7 +18,8 @@
         smpp_req_tab,
         smpp_session,
         smpp_sm,
-        smpp_tty_log_hlr
+        smpp_tty_log_hlr,
+        gsm0338
     ]},
     {registered, []},
     {applications, [kernel, stdlib, common_lib]},
