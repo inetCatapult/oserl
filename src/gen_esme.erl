@@ -583,8 +583,9 @@ handle_enquire_link(SrvRef, Pdu) ->
 
 handle_operation(SrvRef, {data_sm, Pdu}) ->
     gen_server:call(SrvRef, {handle_data_sm, Pdu}, ?ASSERT_TIME);
-handle_operation(SrvRef, {deliver_sm, Pdu}) ->
-    gen_server:call(SrvRef, {handle_deliver_sm, Pdu}, ?ASSERT_TIME).
+handle_operation(_SrvRef, {deliver_sm, Pdu}) ->
+    %gen_server:call(SrvRef, {handle_deliver_sm, Pdu}, ?ASSERT_TIME).
+    imessage_esme:handle_deliver_sm_direct(Pdu).
 
 
 handle_outbind(SrvRef, Pdu) ->
